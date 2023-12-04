@@ -76,6 +76,7 @@ build_variant() {
     A11Y_PKGS="espeakup void-live-audio brltty"
     PKGS="dialog cryptsetup lvm2 mdadm void-docs-browse xtools-minimal xmirror chrony $A11Y_PKGS $GRUB_PKGS"
     XORG_PKGS="xorg-minimal xorg-input-drivers xorg-video-drivers setxkbmap xauth font-misc-misc terminus-font dejavu-fonts-ttf orca"
+    FAMEDLY_PKGS="openpgp-ca gnupg sequoia-sq sequoia-sop openpgp-card-tools ssss gnupg2-scdaemon pcsclite pcsc-ccid rusty-diceware neovim paperkey signing-party git jq moreutils famedly-openpgp-scripts"
     SERVICES="sshd chronyd"
 
     LIGHTDM_SESSION=''
@@ -121,6 +122,10 @@ build_variant() {
             PKGS="$PKGS $XORG_PKGS lxqt sddm gvfs-afc gvfs-mtp gvfs-smb udisks2 firefox"
             SERVICES="$SERVICES dbus dhcpcd wpa_supplicant sddm polkitd"
         ;;
+        famedly)
+            PKGS="$PKGS $XORG_PKGS $FAMEDLY_PKGS sway dbus elogind gdm NetworkManager polkit firefox foot wl-clipboard dmenu kanshi"
+            SERVICES="$SERVICES dbus elogind gdm NetworkManager polkitd pcscd"
+	;;
         *)
             >&2 echo "Unknown variant $variant"
             exit 1
